@@ -187,23 +187,6 @@ margin-right: 10px;
 }
 
 
-
-
-/*abouttheevent*/
-
-   #featured-3 {
-    background-color: #f6f5f2;
-    margin-top: 40pt;
-  }
-  #footer-5 {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  .header-md {
-    text-align: center;
-  }
-
   /*feeedback*/
 
 
@@ -241,6 +224,34 @@ width: 100%;
     .text-3{
         text-align: start;
     }
+
+/*abouttheevent*/
+
+#featured-3 {
+  background-color: #f6f5f2;
+  margin-top: 40pt;
+}
+#footer-5 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.header-md {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 600px) {
 #featured-3 {
