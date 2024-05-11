@@ -39,11 +39,47 @@ window.addEventListener('load', function() {
   window.scrollTo(0, 0);
 });
 
+const searchForm = document.getElementById('search-form');
+const searchQueryInput = document.getElementById('search-query');
+const searchResultsDiv = document.getElementById('search-results');
 
-document.getElementById("searchForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Предотвращаем отправку формы по умолчанию
-  let query = document.getElementById("searchInput").value; // Получаем значение поискового запроса
-  // Здесь можно выполнить какие-то действия с поисковым запросом, например, отправить его на сервер или обработать локально
-  console.log("Поиск:", query);
-  // В данном примере просто выводим запрос в консоль
+searchForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const query = searchQueryInput.value.toLowerCase();
+  const results = [];
+
+  // Replace this with your actual search logic (consider using libraries like Lunr.js for better performance)
+  // This is a basic example searching for the query in page titles
+
+  const pageTitles = document.querySelectorAll('title');
+  for (const title of pageTitles) {
+    if (title.textContent.toLowerCase().includes(query)) {
+      results.push({
+        url: location.href, // Assuming the search happens on the current page
+        title: title.textContent
+      });
+    }
+  }
+
+  // Display search results
+  searchResultsDiv.innerHTML = '';
+  if (results.length === 0) {
+    searchResultsDiv.innerHTML = '<p>Ничего не найдено.</p>';
+  } else {
+    const ul = document.createElement('ul');
+    for (const result of results) {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = result.url;
+      link.textContent = result.title;
+      li.appendChild(link);
+      ul.appendChild(li);
+    }
+    searchResultsDiv.appendChild(ul);
+  }
 });
+
+
+
+
