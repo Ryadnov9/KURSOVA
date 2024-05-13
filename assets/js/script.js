@@ -20,66 +20,43 @@ document.getElementById("scroll-to-top").onclick = function() {
   document.documentElement.scrollTop = 0;
 }
 
-/*Скрол*/
-/*Скрол*/
-window.addEventListener('scroll', function() {
-  var container = document.querySelector('.container');
-  var scrollPosition = window.scrollY;
-  var containerOffsetTop = container.offsetTop;
-  var windowHeight = window.innerHeight;
-
-  if (scrollPosition > containerOffsetTop - windowHeight / 2) {
-    container.style.opacity = '1';
-  } else {
-    container.style.opacity = '0';
-  }
-});
-
+/*Обновление страницы*/
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
 });
 
-const searchForm = document.getElementById('search-form');
-const searchQueryInput = document.getElementById('search-query');
-const searchResultsDiv = document.getElementById('search-results');
 
-searchForm.addEventListener('submit', function(event) {
-  event.preventDefault();
+/*Поиск*/
+function performSearch(query) {
+  var searchResults = document.getElementById('searchResults');
+  var results = [];
 
-  const query = searchQueryInput.value.toLowerCase();
-  const results = [];
+  // Очистка результатов предыдущего поиска
+  searchResults.innerHTML = '';
 
-  // Replace this with your actual search logic (consider using libraries like Lunr.js for better performance)
-  // This is a basic example searching for the query in page titles
+  if (query.trim() !== '') {
+      // Поиск элементов на странице, содержащих запрос
+      var elements = document.querySelectorAll('*:contains("' + query + '")');
+      
+      // Перебор найденных элементов
+      elements.forEach(function(element) {
+          // Создание ссылки для перехода к элементу
+          var link = document.createElement('a');
+          link.textContent = 'Найдено: ' + element.tagName;
+          link.href = '#' + element.id;
+          link.classList.add('searchResultLink');
 
-  const pageTitles = document.querySelectorAll('title');
-  for (const title of pageTitles) {
-    if (title.textContent.toLowerCase().includes(query)) {
-      results.push({
-        url: location.href, // Assuming the search happens on the current page
-        title: title.textContent
+          // Добавление ссылки к результатам поиска
+          searchResults.appendChild(link);
+
+          // Добавление найденного элемента к результатам поиска (необязательно)
+          searchResults.appendChild(document.createElement('br'));
       });
-    }
-  }
-
-  // Display search results
-  searchResultsDiv.innerHTML = '';
-  if (results.length === 0) {
-    searchResultsDiv.innerHTML = '<p>Ничего не найдено.</p>';
   } else {
-    const ul = document.createElement('ul');
-    for (const result of results) {
-      const li = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = result.url;
-      link.textContent = result.title;
-      li.appendChild(link);
-      ul.appendChild(li);
-    }
-    searchResultsDiv.appendChild(ul);
+      // В случае пустого запроса можно предпринять соответствующие действия, например, отображение сообщения об ошибке
+      searchResults.textContent = 'Введите текст для поиска';
   }
-});
-
+}
 
 
 
