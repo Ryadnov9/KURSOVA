@@ -337,5 +337,10 @@ width: 100%;
     }
   }
 
-
+  @media only screen and (max-width: 768px) {
+    svg {
+    height: 9em;
+    width: 9em;
+    }
+  }
   
