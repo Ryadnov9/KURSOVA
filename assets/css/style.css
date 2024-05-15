@@ -83,17 +83,7 @@ footer{
     height: 40px;
   }
  
-
-
-
-
-
-
-
-
-
-
-/*index*/
+  /*index*/
   #news-hed{
     text-align: center;
   }
@@ -132,15 +122,15 @@ footer{
     
   }
   .news-container {
-    text-align: center; /* Центрируем содержимое внутри контейнера */
+    text-align: center; 
 }
 
 .news-icon {
-    display: inline-block; /* Размещаем элемент в строке */
+    display: inline-block; 
 }
 
 .text-container {
-    margin-top: 20px; /* Добавляем отступ сверху между изображением и текстом */
+    margin-top: 20px; 
     
 }
 #text-news{
@@ -240,12 +230,6 @@ width: 100%;
 .header-md {
   text-align: center;
 }
-
-
-
-
-
-
 
 @media only screen and (max-width: 600px) {
 #featured-3 {
